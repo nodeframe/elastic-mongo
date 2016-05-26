@@ -61,34 +61,34 @@ mongosetup:
 
 # mongo-connector
 # https://github.com/10gen-labs/mongo-connector
-#connector:
-#  image: python:latest
-#  links:
-#    - mongo1:mongo1
-#    - mongo2:mongo2
-#    - mongo3:mongo3
-#    - elasticsearch:elasticsearch
-#  volumes:
-#    - ./scripts:/scripts
-#  entrypoint: [ "/scripts/mongo-connector.sh" ]
-
-
-# Transporter
-#
-# https://github.com/compose/transporter
-# https://www.compose.io/articles/transporter-driving-part-one/
-transporter:
-  image: golang:1.5
+connector:
+  image: python:latest
   links:
     - mongo1:mongo1
     - mongo2:mongo2
     - mongo3:mongo3
     - elasticsearch:elasticsearch
   volumes:
-    - ./transporter:/transporter
     - ./scripts:/scripts
-  entrypoint: [ "/transporter/run.sh" ]
-  restart: always
+  entrypoint: [ "/scripts/mongo-connector.sh" ]
+
+
+# Transporter
+#
+# https://github.com/compose/transporter
+# https://www.compose.io/articles/transporter-driving-part-one/
+# transporter:
+#   image: golang:1.5
+#   links:
+#     - mongo1:mongo1
+#     - mongo2:mongo2
+#     - mongo3:mongo3
+#     - elasticsearch:elasticsearch
+#   volumes:
+#     - ./transporter:/transporter
+#     - ./scripts:/scripts
+#   entrypoint: [ "/transporter/run.sh" ]
+#   restart: always
 
 
 # Make sure ES does not rellocate it's shards when it has low disk space.
