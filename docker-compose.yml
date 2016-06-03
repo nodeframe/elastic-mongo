@@ -1,14 +1,14 @@
 mongo3:
   hostname: mongo3
   image: mongo:3.0.6
-  entrypoint: [ "/usr/bin/mongod", "--replSet", "rs", "--journal", "--smallfiles", "--rest" ]
+  entrypoint: [ "/usr/bin/mongod", "--replSet", "rs", "--rest" ]
   ports:
     - "27018:27017"
     - "28018:28017"
   restart: always
   volumes_from:
     - mongo3-data
-  command: --smallfiles --rest --auth  
+  # command: --smallfiles --rest --auth  
 
 mongo3-data:
   container_name: mongo3-data
@@ -20,14 +20,14 @@ mongo3-data:
 mongo2:
   hostname: mongo2
   image: mongo:3.0.6
-  entrypoint: [ "/usr/bin/mongod", "--replSet", "rs", "--journal", "--smallfiles", "--rest" ]
+  entrypoint: [ "/usr/bin/mongod", "--replSet", "rs", "--rest" ]
   ports:
     - "27019:27017"
     - "28019:28017"
   restart: always
   volumes_from:
     - mongo2-data
-  command: --smallfiles --rest --auth    
+  # command: --smallfiles --rest --auth    
 
 
 mongo2-data:
@@ -40,7 +40,7 @@ mongo2-data:
 mongo1:
   hostname: mongo1
   image: mongo:3.0.6
-  entrypoint: [ "/usr/bin/mongod", "--replSet", "rs", "--journal", "--smallfiles", "--rest" ]
+  entrypoint: [ "/usr/bin/mongod", "--replSet", "rs", "--rest" ]
   ports:
     - "27017:27017"
     - "28017:28017"
@@ -50,7 +50,7 @@ mongo1:
   restart: always
   volumes_from:
     - mongo1-data
-  command: --smallfiles --rest --auth    
+  # command: --smallfiles --rest --auth    
 
 mongo1-data:
   container_name: mongo1-data
