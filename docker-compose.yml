@@ -6,6 +6,16 @@ mongo3:
     - "27018:27017"
     - "28018:28017"
   restart: always
+  volumes_from:
+    - mongo3-data
+  command: --smallfiles --rest --auth  
+
+mongo3-data:
+  container_name: mongo3-data
+  image: tianon/true
+  volumes:
+    - ./data/db3:/data/db
+  # command: --break-mongo  
 
 mongo2:
   hostname: mongo2
@@ -15,6 +25,17 @@ mongo2:
     - "27019:27017"
     - "28019:28017"
   restart: always
+  volumes_from:
+    - mongo2-data
+  command: --smallfiles --rest --auth    
+
+
+mongo2-data:
+  container_name: mongo2-data
+  image: tianon/true
+  volumes:
+    - ./data/db2:/data/db
+  # command: --break-mongo    
 
 mongo1:
   hostname: mongo1
@@ -27,6 +48,16 @@ mongo1:
     - mongo2:mongo2
     - mongo3:mongo3
   restart: always
+  volumes_from:
+    - mongo1-data
+  command: --smallfiles --rest --auth    
+
+mongo1-data:
+  container_name: mongo1-data
+  image: tianon/true
+  volumes:
+    - ./data/db1:/data/db
+  # command: --break-mongo    
 
 elasticsearch:
   hostname: elasticsearch
