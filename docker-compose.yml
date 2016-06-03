@@ -1,7 +1,7 @@
 mongo3:
   hostname: mongo3
   image: mongo:3.0.6
-  entrypoint: [ "/usr/bin/mongod", "--replSet", "rs", "--rest" ]
+  entrypoint: [ "/usr/bin/mongod", "--replSet", "rs", "--journal", "--smallfiles", "--rest" ]
   ports:
     - "27018:27017"
     - "28018:28017"
@@ -20,7 +20,7 @@ mongo3-data:
 mongo2:
   hostname: mongo2
   image: mongo:3.0.6
-  entrypoint: [ "/usr/bin/mongod", "--replSet", "rs", "--rest" ]
+  entrypoint: [ "/usr/bin/mongod", "--replSet", "rs", "--journal", "--smallfiles", "--rest" ]
   ports:
     - "27019:27017"
     - "28019:28017"
@@ -40,7 +40,7 @@ mongo2-data:
 mongo1:
   hostname: mongo1
   image: mongo:3.0.6
-  entrypoint: [ "/usr/bin/mongod", "--replSet", "rs", "--rest" ]
+  entrypoint: [ "/usr/bin/mongod", "--replSet", "rs", "--journal", "--smallfiles", "--rest" ]
   ports:
     - "27017:27017"
     - "28017:28017"
